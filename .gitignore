@@ -4,6 +4,7 @@ environment_preprocess.h
 www/all.min.js
 www/js/all.js
 
+builds/
 .idea
 *.json
 *.upload

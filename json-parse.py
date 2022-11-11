@@ -11,6 +11,8 @@ with open(sys.argv[1], 'r') as f:
   data = json.load(f)
 
 for index, (key, value) in enumerate(data.items()):
-    print("\"{}\" \"{}\"".format(key, value), end='\n')
+  print("\"{}\"\n\"{}\"".format(key, value), end='\n')
+  # print("\"{}\"".format(key), end='\n')
+    
 
 sys.exit(0)
