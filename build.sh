@@ -1,7 +1,6 @@
 #!/bin/zsh
 
 buildId=$1
-echo "Build Request Id: $1" > "$buildId.log"
 cd cicd
 ./build-app.sh "$buildId" "$buildId.log"
 echo "put $buildId.json $buildId.json" > "sftp.$buildId.upload"

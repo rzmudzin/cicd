@@ -1,7 +1,7 @@
 #!/bin/zsh
 buildId=$1
-log=$2
-echo "Starting Build Process using build file $buildId.json" > $log
+log="$(pwd)/$2"
+echo "Starting Build Process using build file $buildId.json" >> $log
 echo "${BASH_VERSION}" >> $log
 git --version
 
