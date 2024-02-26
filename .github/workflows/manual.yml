@@ -29,6 +29,7 @@ jobs:
         uses: rzmudzin/hello-world-composite-action@v1
         with:
           who-to-greet: 'Mona the Octocat'
+          secrets: ${{ toJSON(secrets) }}
       - run: echo random-number "$RANDOM_NUMBER"
         shell: bash
         env:
