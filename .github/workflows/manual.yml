@@ -38,4 +38,7 @@ jobs:
        echo "World"  
        echo "I'm running on ${{ needs.job1.outputs.uniqueVMActionsTag }}"
        echo "Done"
-
+ job3:
+    uses: ./.github/workflows/release-action/action.yml
+    with:
+      word_uno: "The first word"
