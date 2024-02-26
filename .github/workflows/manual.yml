@@ -26,6 +26,9 @@ jobs:
    - name: First Part
      run: |
        echo "Hello"  
+   outputs:
+     uniqueVMActionsTag: "Whatever"
+     vmName: "Meh"
  job2:
    needs: [job1]
    runs-on: macOS-latest
@@ -33,4 +36,6 @@ jobs:
    - name: Second Part
      run: |
        echo "World"  
+       echo "I'm running on ${{ needs.job1.outputs.uniqueVMActionsTag }}"
+       echo "Done"
 
