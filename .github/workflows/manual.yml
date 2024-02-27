@@ -30,6 +30,7 @@ jobs:
         with:
           who-to-greet: 'Mona the Octocat'
           secrets: ${{ toJSON(secrets) }}
+          actionInputs: ${{ toJSON(inputs) }}
       - run: echo random-number "$RANDOM_NUMBER"
         shell: bash
         env:
