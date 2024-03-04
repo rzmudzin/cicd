@@ -47,7 +47,7 @@ jobs:
        echo "Executing job depenency"  
        echo "random-number=$(echo $RANDOM)" >> $GITHUB_OUTPUT
    outputs:
-     uniqueVMActionsTag: "SomeStuff"
+     uniqueVMActionsTag: $random-number
      vmName: "Meh"
  job-with-dependencies:
    needs: [dependency-uno]
