@@ -39,6 +39,7 @@ jobs:
         env:
           RANDOM_NUMBER: ${{ steps.foo.outputs.random-number }}
  dependency-uno:
+   if: ${{ inputs.run-master-dependency-job }}
    runs-on: macOS-latest
    steps:
    - name: First Part
