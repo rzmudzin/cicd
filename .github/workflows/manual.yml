@@ -48,11 +48,11 @@ jobs:
      uniqueVMActionsTag: "Whatever"
      vmName: "Meh"
  master:
+   if: ${{ inputs.run-master-dependency-job }}
    needs: [dependency-uno]
    runs-on: macOS-latest
    steps:
    - name: Second Part
-     if: ${{ inputs.run-master-dependency-job }}
      run: |
        echo "World"  
        echo "I'm running on ${{ needs.job1.outputs.uniqueVMActionsTag }}"
