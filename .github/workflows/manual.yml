@@ -35,7 +35,7 @@ jobs:
         shell: bash
         env:
           RANDOM_NUMBER: ${{ steps.foo.outputs.random-number }}
- slave:
+ dependency-uno:
    runs-on: macOS-latest
    steps:
    - name: First Part
@@ -45,7 +45,7 @@ jobs:
      uniqueVMActionsTag: "Whatever"
      vmName: "Meh"
  master:
-   needs: [slave]
+   needs: [dependency-uno]
    runs-on: macOS-latest
    steps:
    - name: Second Part
