@@ -43,12 +43,13 @@ jobs:
    runs-on: macOS-latest
    steps:
    - name: Dependency Step
+   - id: step1
      run: |
        echo "Executing job depenency"  
        echo "randomnumber=$(echo $RANDOM)" >> $GITHUB_OUTPUT
        echo "test='Test'" >> $GITHUB_OUTPUT
    outputs:
-     uniqueVMActionsTag: ${test}
+     uniqueVMActionsTag: ${{ steps.step1.outputs.test }}
      vmName: "Meh"
  job-with-dependencies:
    needs: [dependency-uno]
