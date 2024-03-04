@@ -29,12 +29,15 @@ jobs:
     steps:
       - uses: actions/checkout@main
       - id: foo
+        name: Composite Step
         uses: rzmudzin/hello-world-composite-action@main
         with:
           who-to-greet: 'Mona the Octocat'
           secrets: ${{ toJSON(secrets) }}
           actionInputs: ${{ toJSON(inputs) }}
-      - run: echo random-number "$RANDOM_NUMBER"
+      - name: Composite Step Consumer 
+        run: |
+          echo random-number "$RANDOM_NUMBER"
         shell: bash
         env:
           RANDOM_NUMBER: ${{ steps.foo.outputs.random-number }}
