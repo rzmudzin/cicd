@@ -45,9 +45,10 @@ jobs:
    - name: Dependency Step
      run: |
        echo "Executing job depenency"  
-       echo "random-number=$(echo $RANDOM)" >> $GITHUB_OUTPUT
+       echo "randomnumber=$(echo $RANDOM)" >> $GITHUB_OUTPUT
+       echo "test='Test'" >> $GITHUB_OUTPUT
    outputs:
-     uniqueVMActionsTag: $random-number
+     uniqueVMActionsTag: ${test}
      vmName: "Meh"
  job-with-dependencies:
    needs: [dependency-uno]
