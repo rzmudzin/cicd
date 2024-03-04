@@ -45,9 +45,9 @@ jobs:
    - name: Dependency Step
      run: |
        echo "Executing job depenency"  
-       echo "newBuildNumber=Stuff" >> $GITHUB_ENV 
+       echo "random-number=$(echo $RANDOM)" >> $GITHUB_OUTPUT
    outputs:
-     uniqueVMActionsTag: "$newBuildNumber"
+     uniqueVMActionsTag: $random-number
      vmName: "Meh"
  job-with-dependencies:
    needs: [dependency-uno]
