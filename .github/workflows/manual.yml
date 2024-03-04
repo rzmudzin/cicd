@@ -42,7 +42,7 @@ jobs:
    if: ${{ inputs.enable-dependency-uno }}
    runs-on: macOS-latest
    steps:
-   - name: Dependency Step
+   # - name: Dependency Step
    - id: step1
      run: |
        echo "Executing job depenency"  
