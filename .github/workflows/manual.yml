@@ -20,7 +20,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
- hello_world_job:
+ PrimaryMain:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
@@ -35,7 +35,7 @@ jobs:
         shell: bash
         env:
           RANDOM_NUMBER: ${{ steps.foo.outputs.random-number }}
- job1:
+ slave:
    runs-on: macOS-latest
    steps:
    - name: First Part
@@ -44,8 +44,8 @@ jobs:
    outputs:
      uniqueVMActionsTag: "Whatever"
      vmName: "Meh"
- job2:
-   needs: [job1]
+ master:
+   needs: [slave]
    runs-on: macOS-latest
    steps:
    - name: Second Part
@@ -53,20 +53,4 @@ jobs:
        echo "World"  
        echo "I'm running on ${{ needs.job1.outputs.uniqueVMActionsTag }}"
        echo "Done"
-#  hello_world_job:
-#    runs-on: ubuntu-latest
-#    name: A job to say hello
-#    steps:
-#      - uses: actions/checkout@v4
-#      - id: foo
-#        uses: actions/hello-world-composite-action@v1
-#        with:
-#          who-to-greet: 'Mona the Octocat'
-#      - run: echo random-number "$RANDOM_NUMBER"
-#        shell: bash
-#        env:
-#          RANDOM_NUMBER: ${{ steps.foo.outputs.random-number }}
-# job3:
-#    uses: ./.github/workflows/release-action/action.yml
-#    with:
-#      word_uno: "The first word"
+
