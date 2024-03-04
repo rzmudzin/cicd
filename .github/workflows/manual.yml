@@ -42,15 +42,15 @@ jobs:
    if: ${{ inputs.enable-dependency-uno }}
    runs-on: macOS-latest
    steps:
-   # - name: Dependency Step
-   - id: step1
+   - id: dependency-uno-step1
+     name: Dependency Step
      run: |
        echo "Executing job depenency"  
        echo "randomnumber=$(echo $RANDOM)" >> $GITHUB_OUTPUT
-       echo "test='Test'" >> $GITHUB_OUTPUT
+       echo "test=Test" >> $GITHUB_OUTPUT
    outputs:
-     uniqueVMActionsTag: ${{ steps.step1.outputs.test }}
-     vmName: "Meh"
+     uniqueVMActionsTag: ${{ steps.dependency-uno-step1.outputs.test }}
+     vmName: ${{ steps.dependency-uno-step1.outputs.randomnumber }}
  job-with-dependencies:
    needs: [dependency-uno]
    runs-on: macOS-latest
