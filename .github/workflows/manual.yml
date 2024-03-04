@@ -56,6 +56,6 @@ jobs:
    - name: Step requiring dependency be run first
      run: |
        echo "Running after dependency is run"  
-       echo "I'm running on ${{ needs.job1.outputs.uniqueVMActionsTag }}"
+       echo "I'm running on ${{ needs.dependency-uno.outputs.uniqueVMActionsTag }}"
        echo "Done"
 
