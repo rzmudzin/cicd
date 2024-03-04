@@ -17,9 +17,9 @@ on:
         required: true
         # The data type of the input
         type: string
-      run-master-dependency-job:
+      enable-dependency-uno:
         type: boolean
-        description: Run master/dependency job
+        description: Enable dependency uno
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -39,7 +39,7 @@ jobs:
         env:
           RANDOM_NUMBER: ${{ steps.foo.outputs.random-number }}
  dependency-uno:
-   if: ${{ inputs.run-master-dependency-job }}
+   if: ${{ inputs.enable-dependency-uno }}
    runs-on: macOS-latest
    steps:
    - name: Dependency Step
