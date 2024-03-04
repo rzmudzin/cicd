@@ -42,19 +42,19 @@ jobs:
    if: ${{ inputs.run-master-dependency-job }}
    runs-on: macOS-latest
    steps:
-   - name: First Part
+   - name: Dependency Step
      run: |
-       echo "Hello"  
+       echo "Executing job depenency"  
    outputs:
      uniqueVMActionsTag: "Whatever"
      vmName: "Meh"
- master:
+ job-with-dependencies:
    needs: [dependency-uno]
    runs-on: macOS-latest
    steps:
-   - name: Second Part
+   - name: Step requiring dependency be run first
      run: |
-       echo "World"  
+       echo "Running after dependency is run"  
        echo "I'm running on ${{ needs.job1.outputs.uniqueVMActionsTag }}"
        echo "Done"
 
