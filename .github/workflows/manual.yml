@@ -21,6 +21,21 @@ on:
         type: boolean
         description: Enable dependency uno
 
+
+      enable-hello-action:
+        type: boolean
+        description: Enable Hello Action
+      enable-add-action:
+        type: boolean
+        description: Enable Add Action        
+      add-action-first-value:
+        type: string
+        description: First Value To Add
+      add-action-second-value:
+        type: string
+        description: Second Value To Add
+        
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
  PrimaryMain:
