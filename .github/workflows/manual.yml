@@ -39,6 +39,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
  PrimaryMain:
+    if: ${{ inputs.enable-hello-action }}
     runs-on: ubuntu-latest
     name: Primary Main Job
     steps:
