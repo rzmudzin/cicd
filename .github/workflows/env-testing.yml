@@ -59,7 +59,7 @@ jobs:
      - name: Environment Info As Json
        run: |
          echo "Workflow Env"
-         #echo "${{ toJson(env) }}"
+
          echo "Github Env"
 
   # This workflow contains a single job called "greet"
