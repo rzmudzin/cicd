@@ -77,9 +77,9 @@ jobs:
  JsonJob:
    if: ${{ inputs.enable-json-job }}
    runs-on: ubuntu-latest
-   name: Print Env As Json
+   name: Print Environment As Json
    steps:
-     - name: Env Info As Json
+     - name: Environment Info As Json
        run: | # shell
          # echo "Workflow Env"
          # echo "${{ toJson(env) }}"
