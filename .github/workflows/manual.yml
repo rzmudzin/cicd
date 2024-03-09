@@ -58,6 +58,19 @@ jobs:
        run: | # shell
          echo "${{ toJson(github) }}"
 
+ JsonAction:
+   if: ${{ inputs.enable-json-action }}
+   runs-on: ubuntu-latest
+   name: Json Action
+   steps:
+      - uses: actions/checkout@main
+      - id: json-action-step
+        name: Json Step
+        uses: rzmudzin/json-composite-action@main
+        with:
+          secrets: ${{ toJSON(secrets) }}
+          actionInputs: ${{ toJSON(inputs) }}
+
  AddTwo:
     if: ${{ inputs.enable-add-action }}
     runs-on: ubuntu-latest
