@@ -38,6 +38,26 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+
+ AddTwo:
+    if: ${{ inputs.enable-add-action }}
+    runs-on: ubuntu-latest
+    name: Add Two Numbers
+    steps:
+      - uses: actions/checkout@main
+      - id: addition-step
+        name: Addition Step
+        uses: rzmudzin/addition-composite-action@main
+        with:
+          secrets: ${{ toJSON(secrets) }}
+          actionInputs: ${{ toJSON(inputs) }}
+      - name: Results Processing
+        run: |
+          echo sum-of-numbers "$RESULT_OF_ADDITION"
+        shell: bash
+        env:
+          RESULT_OF_ADDITION: ${{ steps.addition-step.outputs.sum-of-numbers }}
+
  PrimaryMain:
     if: ${{ inputs.enable-hello-action }}
     runs-on: ubuntu-latest
