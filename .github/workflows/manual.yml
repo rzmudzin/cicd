@@ -63,6 +63,12 @@ jobs:
    runs-on: ubuntu-latest
    name: Json Action
    steps:
+      - name: Json Action Setup
+        id: json-action-setup
+        run: |
+            echo "Json Action Setup"
+            echo "Working Directory: ${GITHUB_WORKSPACE}"
+      
       - uses: actions/checkout@main
       - id: json-action-step
         name: Json Step
