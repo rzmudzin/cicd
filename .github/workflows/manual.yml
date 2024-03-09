@@ -78,7 +78,7 @@ jobs:
           echo Product "$RESULT_OF_MULTIPLICATION"
         shell: bash
         env:
-          RESULT_OF_MULTIPLICATION: ${{ steps.addition-step.outputs.product-of-numbers }}          
+          RESULT_OF_MULTIPLICATION: ${{ steps.multiplication-step.outputs.product-of-numbers }}          
 
  PrimaryMain:
     if: ${{ inputs.enable-hello-action }}
