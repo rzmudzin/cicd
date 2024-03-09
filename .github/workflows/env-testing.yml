@@ -1,0 +1,63 @@
+name: Build Feature Branch
+
+on:
+  workflow_dispatch:
+    inputs:
+      dsap:
+        description: 'DSAP Environment (tst1/tst2/uat1/uat2/prd)'
+        required: true
+#      appdome:
+#        description: 'Apply Appdome wrapper (true or false)'
+#        required: true
+#        default: 'false'
+#      fusionid:
+#        type: choice
+#        description: Fusion Set
+#        options:
+#        - "No MITM"
+#        - "MITM"
+      xcversion:
+        type: choice
+        description: XCode Version
+        options:
+        - "15"
+        - "14"
+        
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event.inputs.dsap }}-${{ github.event.inputs.xcversion }}
+  cancel-in-progress: true
+  
+env:
+    changeLog: changes.txt
+    scheme: 'Marriott (TST)'
+    config: Integration
+    configPath: ${{github.workspace}}/Marriott/Marriott/Integration.xcconfig
+    appName: Marriott-INT
+    ipaName: Marriott-INT.ipa
+    appCenterChannel: 'Marriott-International-1/Marriott-Integration-Branch-TST'
+    distGroup: 'All-users-of-Marriott-Integration-Branch-TST,UX,QANew'
+    appCenterToken: b5c482d2090d16faddb2421e47676b2016566225
+    appCenterAppID: '17f68eeb-70d1-d4b8-cd92-53e578e87523'
+    buildNumberBase: 3500
+    appdomeReceiptPDF : appdome_receipt.pdf
+    appdomeReceiptJSON : appdome_receipt.json
+    signingIdentity: 'iPhone Distribution: Marriott International Inc'
+    GH_SCRIPTS_PATH: ${{github.workspace}}/.github/scripts
+    APP_SIZE_RESTRICTIONS: ${{vars.APP_SIZE_RESTRICTIONS}}
+    profileArgs: >
+        -P "APP_PROVISIONING_PROFILE ; com.marriott.kony.iphonetest ; ${{github.workspace}}/Profiles and Certificates/Marriott_iPhone_Test.mobileprovision"
+        -P "WATCH_APP_PROVISIONING_PROFILE ; com.marriott.kony.iphonetest.watchkitapp ; ${{github.workspace}}/Profiles and Certificates/Marriott_iPhone_Test_WatchKit_App.mobileprovision"
+        -P "WATCH_EXT_PROVISIONING_PROFILE ; com.marriott.kony.iphonetest.watchkitapp.watchextension ; ${{github.workspace}}/Profiles and Certificates/Marriott_iPhone_Test_WatchKit_Extension.mobileprovision"
+        -P "NOTIFICATION_EXTENSION_PROVISIONING_PROFILE ; com.marriott.kony.iphonetest.notificationextension ; ${{github.workspace}}/Profiles and Certificates/Marriott_iPhone_Test_Notification_Extension.mobileprovision"
+
+jobs:
+  # This workflow contains a single job called "greet"
+  greet:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Runs a single command using the runners shell
+    - name: Send greeting
+      run: echo "What up"
