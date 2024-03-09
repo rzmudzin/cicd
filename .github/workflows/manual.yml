@@ -99,7 +99,7 @@ jobs:
 
 
       - name: Run Additional Extended Results Processing
-        if: ${{ steps.json-action-step.outputs.has-extended-outputs }} == 'true'
+        if: steps.json-action-step.outputs.has-extended-outputs == 'true'
         run: |
           echo "Running Additional Extended Results Processing..."
           echo Extended Results: "$EXTENDED_RESULT_OF_JSON_ACTION"
