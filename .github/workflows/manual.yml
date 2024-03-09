@@ -51,12 +51,12 @@ jobs:
         with:
           secrets: ${{ toJSON(secrets) }}
           actionInputs: ${{ toJSON(inputs) }}
-      - name: Results Processing
-        run: |
-          echo sum-of-numbers "$RESULT_OF_ADDITION"
-        shell: bash
-        env:
-          RESULT_OF_ADDITION: ${{ steps.addition-step.outputs.sum-of-numbers }}
+      # - name: Results Processing
+      #   run: |
+      #     echo sum-of-numbers "$RESULT_OF_ADDITION"
+      #   shell: bash
+      #   env:
+      #     RESULT_OF_ADDITION: ${{ steps.addition-step.outputs.sum-of-numbers }}
 
  PrimaryMain:
     if: ${{ inputs.enable-hello-action }}
