@@ -27,13 +27,16 @@ on:
         description: Enable Hello Action
       enable-add-action:
         type: boolean
-        description: Enable Add Action        
+        description: Enable Add Action
+      enable-multiplication-action:
+        type: boolean
+        description: Enable Multiplication Action        
       add-action-first-value:
         type: string
-        description: First Value To Add
+        description: First Value
       add-action-second-value:
         type: string
-        description: Second Value To Add
+        description: Second Value
         
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -57,6 +60,25 @@ jobs:
         shell: bash
         env:
           RESULT_OF_ADDITION: ${{ steps.addition-step.outputs.sum-of-numbers }}
+
+ MultiplyTwo:
+    if: ${{ inputs.enable-multiplication-action }}
+    runs-on: ubuntu-latest
+    name: Multiply Two Numbers
+    steps:
+      - uses: actions/checkout@main
+      - id: multiplication-step
+        name: Multiplication Step
+        uses: rzmudzin/multiplication-composite-action@main
+        with:
+          secrets: ${{ toJSON(secrets) }}
+          actionInputs: ${{ toJSON(inputs) }}
+      - name: Results Processing
+        run: |
+          echo Product "$RESULT_OF_MULTIPLICATION"
+        shell: bash
+        env:
+          RESULT_OF_MULTIPLICATION: ${{ steps.multiplication-step.outputs.product-of-numbers }}          
 
  PrimaryMain:
     if: ${{ inputs.enable-hello-action }}
