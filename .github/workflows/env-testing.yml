@@ -22,6 +22,18 @@ on:
         options:
         - "15"
         - "14"
+
+
+      enable-json-job:
+        type: boolean
+        description: Enable Json Job
+      enable-json-action:
+        type: boolean
+        description: Enable Json Composite Action       
+
+      enable-extended-json-action:
+        type: boolean
+        description: Enable Extended Json Composite Action         
         
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event.inputs.dsap }}-${{ github.event.inputs.xcversion }}
