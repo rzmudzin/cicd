@@ -65,7 +65,7 @@ jobs:
          # echo "Workflow Env"
          # echo "${{ toJson(env) }}"
          echo "Github Env"
-         echo "${{ toJson(github) }}"
+         # echo "${{ toJson(github) }}"
 
  JsonAction:
    if: ${{ inputs.enable-json-action }}
