@@ -62,6 +62,28 @@ jobs:
          echo ${{ env.appName }}
          echo "Github Env"
 
+
+  JsonAction:
+   if: ${{ inputs.enable-json-action }}
+   runs-on: ubuntu-latest
+   name: Json Action
+   steps:
+      - name: Json Action Setup
+        id: json-action-setup
+        run: |
+            echo "Json Action Setup"
+            echo "Working Directory: ${GITHUB_WORKSPACE}"
+      
+      - uses: actions/checkout@main
+      - id: json-action-step
+        name: Json Step
+        uses: rzmudzin/json-composite-action@main
+        with:
+          secrets: ${{ toJSON(secrets) }}
+          actionInputs: ${{ toJSON(inputs) }}
+          enable-extended-ops: false
+          
+
   # This workflow contains a single job called "greet"
   greet:
     # The type of runner that the job will run on
