@@ -44,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Add Two Numbers
     steps:
-      - uses: actions/checkout@main
+      - uses: actions/checkout@debug
       - id: addition-step
         name: Addition Step
         uses: rzmudzin/addition-composite-action@main
