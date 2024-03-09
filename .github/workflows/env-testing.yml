@@ -57,11 +57,8 @@ jobs:
    name: Print Environment As Json
    steps:
      - name: Environment Info As Json
-       run: | # shell
-         # echo "Workflow Env"
-         # echo "${{ toJson(env) }}"
-         echo "Github Env"
-         # echo "${{ toJson(github) }}"
+       run: |
+         echo "Workflow Env"
 
   # This workflow contains a single job called "greet"
   greet:
