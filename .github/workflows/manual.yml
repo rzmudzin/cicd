@@ -81,7 +81,17 @@ jobs:
           echo Results: "$RESULT_OF_JSON_ACTION"
         shell: bash
         env:
-          RESULT_OF_JSON_ACTION: ${{ steps.json-action-step.outputs.json-action-outputs }}          
+          RESULT_OF_JSON_ACTION: ${{ steps.json-action-step.outputs.json-action-outputs }} 
+
+      - name: Extended Results Processing
+        run: |
+          echo Extended Results: "$EXTENDED_RESULT_OF_JSON_ACTION"
+          echo Has Extended Results: "$HAS_EXTENDED_OUTPUTS"
+        shell: bash
+        env:
+          EXTENDED_RESULT_OF_JSON_ACTION: ${{ steps.json-action-step.outputs.json-action-extended-outputs }}           
+          HAS_EXTENDED_OUTPUTS: ${{ steps.json-action-step.outputs.has-extended-outputs }}           
+          
 
  AddTwo:
     if: ${{ inputs.enable-add-action }}
