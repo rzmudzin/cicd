@@ -75,7 +75,7 @@ jobs:
           echo Results: "$RESULT_OF_JSON_ACTION"
         shell: bash
         env:
-          RESULT_OF_JSON_ACTION: ${{ steps.addition-step.outputs.json-action-step }}          
+          RESULT_OF_JSON_ACTION: ${{ steps.json-action-step.outputs.json-action-outputs }}          
 
  AddTwo:
     if: ${{ inputs.enable-add-action }}
