@@ -43,7 +43,11 @@ on:
         description: Enable Json Job
       enable-json-action:
         type: boolean
-        description: Enable Json Composite Action        
+        description: Enable Json Composite Action       
+
+      enable-extended-json-action:
+        type: boolean
+        description: Enable Extended Json Composite Action         
         
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -76,6 +80,7 @@ jobs:
         with:
           secrets: ${{ toJSON(secrets) }}
           actionInputs: ${{ toJSON(inputs) }}
+          enable-extended-ops: ${{ inputs.enable-extended-ops }}
       - name: Initial Results Processing
         run: |
           echo Results: "$RESULT_OF_JSON_ACTION"
