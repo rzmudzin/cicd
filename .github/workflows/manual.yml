@@ -37,10 +37,66 @@ on:
       add-action-second-value:
         type: string
         description: Second Value
+
+      enable-json-job:
+        type: boolean
+        description: Enable Json Job
+      enable-json-action:
+        type: boolean
+        description: Enable Json Composite Action       
+
+      enable-extended-json-action:
+        type: boolean
+        description: Enable Extended Json Composite Action         
         
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+
+ JsonJob:
+   if: ${{ inputs.enable-json-job }}
+   runs-on: ubuntu-latest
+   name: Print Env As Json
+   steps:
+     - name: Env Info As Json
+       run: | # shell
+         echo "${{ toJson(github) }}"
+
+ JsonAction:
+   if: ${{ inputs.enable-json-action }}
+   runs-on: ubuntu-latest
+   name: Json Action
+   steps:
+      - name: Json Action Setup
+        id: json-action-setup
+        run: |
+            echo "Json Action Setup"
+            echo "Working Directory: ${GITHUB_WORKSPACE}"
+      
+      - uses: actions/checkout@main
+      - id: json-action-step
+        name: Json Step
+        uses: rzmudzin/json-composite-action@main
+        with:
+          secrets: ${{ toJSON(secrets) }}
+          actionInputs: ${{ toJSON(inputs) }}
+          enable-extended-ops: ${{ inputs.enable-extended-json-action }}
+      - name: Initial Results Processing
+        run: |
+          echo Results: "$RESULT_OF_JSON_ACTION"
+        shell: bash
+        env:
+          RESULT_OF_JSON_ACTION: ${{ steps.json-action-step.outputs.json-action-outputs }} 
+
+      - name: Extended Results Processing
+        run: |
+          echo Extended Results: "$EXTENDED_RESULT_OF_JSON_ACTION"
+          echo Has Extended Results: "$HAS_EXTENDED_OUTPUTS"
+        shell: bash
+        env:
+          EXTENDED_RESULT_OF_JSON_ACTION: ${{ steps.json-action-step.outputs.json-action-extended-outputs }}           
+          HAS_EXTENDED_OUTPUTS: ${{ steps.json-action-step.outputs.has-extended-outputs }}           
+          
 
  AddTwo:
     if: ${{ inputs.enable-add-action }}
