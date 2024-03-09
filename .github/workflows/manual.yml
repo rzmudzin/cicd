@@ -44,10 +44,10 @@ jobs:
     runs-on: ubuntu-latest
     name: Add Two Numbers
     steps:
-      - uses: actions/checkout@debug
+      - uses: actions/checkout@main
       - id: addition-step
         name: Addition Step
-        uses: rzmudzin/addition-composite-action@main
+        uses: rzmudzin/addition-composite-action@debug
         with:
           secrets: ${{ toJSON(secrets) }}
           actionInputs: ${{ toJSON(inputs) }}
