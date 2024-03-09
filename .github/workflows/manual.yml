@@ -81,8 +81,8 @@ jobs:
    steps:
      - name: Env Info As Json
        run: | # shell
-         echo "Workflow Env"
-         echo "${{ toJson(env) }}"
+         # echo "Workflow Env"
+         # echo "${{ toJson(env) }}"
          echo "Github Env"
          echo "${{ toJson(github) }}"
 
