@@ -51,6 +51,18 @@ env:
         -P "NOTIFICATION_EXTENSION_PROVISIONING_PROFILE ; com.marriott.kony.iphonetest.notificationextension ; ${{github.workspace}}/Profiles and Certificates/Marriott_iPhone_Test_Notification_Extension.mobileprovision"
 
 jobs:
+  JsonJob:
+   if: ${{ inputs.enable-json-job }}
+   runs-on: ubuntu-latest
+   name: Print Environment As Json
+   steps:
+     - name: Environment Info As Json
+       run: | # shell
+         # echo "Workflow Env"
+         # echo "${{ toJson(env) }}"
+         echo "Github Env"
+         # echo "${{ toJson(github) }}"
+
   # This workflow contains a single job called "greet"
   greet:
     # The type of runner that the job will run on
