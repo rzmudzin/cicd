@@ -52,9 +52,9 @@ jobs:
  JsonJob:
    if: ${{ inputs.enable-json-job }}
    runs-on: ubuntu-latest
-   name: Print inputs
+   name: Print Env As Json
    steps:
-     - name: json-name
+     - name: Env Info As Json
        run: | # shell
          echo "${{ toJson(github) }}"
 
