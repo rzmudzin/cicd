@@ -37,12 +37,20 @@ on:
       add-action-second-value:
         type: string
         description: Second Value
+
+      enable-json-job:
+        type: boolean
+        description: Enable Json Job
+      enable-json-action:
+        type: boolean
+        description: Enable Json Composite Action        
         
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
 
  JsonJob:
+   if: ${{ inputs.enable-json-job }}
    runs-on: ubuntu-latest
    name: Print inputs
    steps:
