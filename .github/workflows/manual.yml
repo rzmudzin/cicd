@@ -80,7 +80,7 @@ jobs:
         with:
           secrets: ${{ toJSON(secrets) }}
           actionInputs: ${{ toJSON(inputs) }}
-          # enable-extended-ops: ${{ inputs.enable-extended-json-action }}
+          enable-extended-ops: ${{ inputs.enable-extended-json-action }}
       - name: Initial Results Processing
         run: |
           echo Results: "$RESULT_OF_JSON_ACTION"
