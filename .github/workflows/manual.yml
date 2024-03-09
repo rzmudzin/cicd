@@ -70,6 +70,12 @@ jobs:
         with:
           secrets: ${{ toJSON(secrets) }}
           actionInputs: ${{ toJSON(inputs) }}
+      - name: Initial Results Processing
+        run: |
+          echo Results: "$RESULT_OF_JSON_ACTION"
+        shell: bash
+        env:
+          RESULT_OF_JSON_ACTION: ${{ steps.addition-step.outputs.json-action-step }}          
 
  AddTwo:
     if: ${{ inputs.enable-add-action }}
