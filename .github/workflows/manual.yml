@@ -96,7 +96,18 @@ jobs:
         env:
           EXTENDED_RESULT_OF_JSON_ACTION: ${{ steps.json-action-step.outputs.json-action-extended-outputs }}           
           HAS_EXTENDED_OUTPUTS: ${{ steps.json-action-step.outputs.has-extended-outputs }}           
-          
+
+
+      - name: Run Additional Extended Results Processing
+        if: ${{ steps.json-action-step.outputs.has-extended-outputs }} == 'true'
+        run: |
+          echo "Running Additional Extended Results Processing..."
+          echo Extended Results: "$EXTENDED_RESULT_OF_JSON_ACTION"
+          echo Has Extended Results: "$HAS_EXTENDED_OUTPUTS"
+        shell: bash
+        env:
+          EXTENDED_RESULT_OF_JSON_ACTION: ${{ steps.json-action-step.outputs.json-action-extended-outputs }}           
+          HAS_EXTENDED_OUTPUTS: ${{ steps.json-action-step.outputs.has-extended-outputs }}            
 
  AddTwo:
     if: ${{ inputs.enable-add-action }}
